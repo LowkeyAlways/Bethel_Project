@@ -7,7 +7,7 @@ Bienvenue dans le projet Béthel ! Ce projet est un site web destiné à une ég
 - Affichage des articles avec contenu détaillé
 - Publication et gestion des actualités
 - Gestion des événements avec calendrier
-- Consultation de la liste de chants avec possibilité d'ajout
+- Consultation de la liste de chants
 - Système d'authentification pour les administrateurs
 
 ## Technologies utilisées
