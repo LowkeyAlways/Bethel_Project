@@ -1,0 +1,246 @@
+html {
+  scroll-behavior: smooth;
+  position: relative;
+  min-height: 100%;
+}
+
+a{
+  text-decoration: none !important;
+}
+
+:root {
+  --primary-color: #e7e7e78a;
+  --secondary-color: #565a5f;
+}
+
+.navbar{
+  padding: 1rem 0;
+  font-size: 1.1rem;
+  background-color: #e7e7e78a;
+}
+
+.nav-link{
+  margin: 0 1rem;
+}
+
+.navbar .container{
+  height: 65px;
+}
+
+.navbar-collapse{
+  justify-content: space-around;
+}
+
+.navbar-brand{
+  font-size: 1.8rem;
+  margin-right: 0 !important;
+}
+
+.navbar-part {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav_login{
+  padding: 0.5rem 1.2rem 0.5rem 1.2rem;
+  border-radius: 1.3rem;
+  background-color: var(--secondary-color) !important;
+  color: white !important;
+  width: 140px;
+  float: right;
+  text-decoration: none;
+  margin: 1% 89%;
+  position: absolute;
+}
+
+.first-link{
+  display: flex;
+  align-items: center;
+}
+
+.second-link{
+  display: flex;
+    align-items: center;
+}
+
+.logo{
+  margin-top: 65%;
+  width: 90px;
+}
+
+.main-margin{
+  margin-top: 6%;
+}
+
+.carousel{
+  width: 60%;
+  margin: auto;
+}
+
+.row{
+  --bs-gutter-x: 0 !important;
+}
+
+.image_side{
+  width: 97%;
+  border-radius: 1.5rem;
+}
+
+.container{
+  width: 85% !important;
+}
+
+.container h2{
+  margin-top: 5%;
+  margin-bottom: 4%;
+}
+
+.card {
+  width: 80%;
+}
+
+.card-body p{
+  height: 75px;
+  width: 97%;
+  overflow: hidden;
+}
+
+.login-form{
+  width: 30%;
+}
+
+.scheduler{
+  margin: auto;
+}
+
+.calendar h1{
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  padding: 0 2rem 2rem;
+}
+
+.form-select {
+  width: 80% !important;
+  margin: 0 1rem;
+}
+
+.songs h1{
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  padding: 0 1rem 0;
+}
+
+.text-editor{
+  width: 900px;
+  height: 600px;
+}
+
+.songs_choice{
+  width: 25%;
+}
+
+.save_button{
+  margin: 1rem;
+}
+
+.text-editor .ql-editor{
+  text-align: center !important;
+}
+
+.save_message{
+  width: 80%;
+  text-align: center;
+  margin: 0 1rem;
+}
+
+.articles h1{
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  padding: 0 2rem 2rem;
+  text-align: center;
+}
+
+.articles .col:first-child{
+  margin: 0 1rem;
+}
+
+.card-body{
+  height: 165px;
+  box-shadow: 0 2rem 4rem #dadada;
+}
+
+.news_card{
+  width: 80%;
+  height: 240px !important;
+  margin-bottom: 2rem;
+}
+
+.news_card > .card-body > p{
+  height: 100px;
+}
+
+.news h1{
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  padding: 0 2rem 2rem;
+  text-align: center;
+}
+
+.news .col:first-child{
+  margin: 0 1rem;
+}
+
+.title{
+  display: flex;
+  justify-content: center;
+}
+
+.add-button{
+  height: 40px;
+  margin-top: 0.5rem;
+}
+
+.ajouter_news h1{
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  padding: 0 2rem 2rem;
+}
+
+.news-form{
+  width: 45%;
+  margin: 2% auto;
+}
+
+.descr_text{
+  height: 300px;
+  margin-bottom: 4rem;
+}
+
+.news_content{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.ajouter_article{
+  width: 45%;
+  margin: 2% auto;
+}
+
+.article_text{
+  margin-bottom: 1rem;
+
+}
+
+.article_cards{
+  margin-bottom: 2rem;
+}
+.article_cards > .card-body p{
+  height: 50px;
+  margin-top: 1rem;
+  margin-bottom: 0 !important;
+}
+
+.delete_button{
+  margin-top: .5rem;
+}
