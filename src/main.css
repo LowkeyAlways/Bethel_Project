@@ -1,7 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
 html {
   scroll-behavior: smooth;
   position: relative;
   min-height: 100%;
+}
+
+.App{
+  font-family: var(--primary-font) ;
 }
 
 a{
@@ -11,6 +20,8 @@ a{
 :root {
   --primary-color: #e7e7e78a;
   --secondary-color: #565a5f;
+  --primary-font: "Madimi One", sans-serif;
+  --secondary-font: "Raleway", sans-serif;
 }
 
 .navbar{
@@ -222,6 +233,10 @@ a{
   grid-template-columns: repeat(4, 1fr);
 }
 
+.news_text{
+  font-family: var(--secondary-font);
+}
+
 .ajouter_article{
   width: 45%;
   margin: 2% auto;
@@ -230,6 +245,10 @@ a{
 .article_text{
   margin-bottom: 1rem;
 
+}
+
+.article_content{
+  font-family: var(--secondary-font);
 }
 
 .article_cards{
@@ -243,4 +262,99 @@ a{
 
 .delete_button{
   margin-top: .5rem;
+}
+
+.events h1{
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  padding: 0 2rem 2rem;
+  text-align: center;
+}
+
+.event_cards{
+  margin: 1rem;
+}
+
+.events_body{
+  height: 215px;
+}
+
+.event_cards button{
+  margin-left: 1rem;
+}
+
+.add-songs{
+  text-align: center;
+  margin: 0 1rem;
+}
+
+.add-editor{
+  margin-bottom: 3rem;
+  width: 665px !important;
+
+}
+
+.carousel-caption{
+  color: black !important;
+}
+
+.article_details{
+  width: 70%;
+  margin: auto;
+}
+
+.article_details .article_content{
+  margin: 5rem 0;
+}
+
+.article_details h5{
+  margin-top: 10rem;
+}
+
+.actualite_details{
+  width: 70%;
+  margin: auto;
+}
+
+.actualite_details h5{
+  margin-top: 10rem;
+
+}
+
+.actualite_details .actualite_content{
+  margin: 5rem 0;
+}
+
+@media screen and (max-width: 1100px) {
+  .row{
+    flex-direction: column;
+  }
+  .carousel {
+    width: 50%;
+    margin: auto;
+  }
+  .row>* {
+    width: 80% !important;
+}
+.image_side {
+  width: 25%;
+  border-radius: 1.5rem;
+}
+.side_container{
+  text-align: center;
+}
+.card-body {
+  height: 210px;
+}
+.nav_login{
+  width: auto;
+  margin: 0;
+  margin-top: .5rem;
+}
+}
+
+@media screen and (max-width: 1100px) {
+  .first-link{
+    display: inline-block;
+  }
 }

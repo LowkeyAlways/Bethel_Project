@@ -20,7 +20,7 @@ const app = express();
 app.use(
   cors({
     origin: "http://localhost:3000",
-    methods: ["GET", "POST", "DELETE"],
+    methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
 );
@@ -58,6 +58,7 @@ if (req.session.firstname) {
     valid: true,
     username: req.session.firstname,
     id: req.session.user_id,
+    role: req.session.role
     });
 } else {
     return res.json({ valid: false });
@@ -78,6 +79,7 @@ app.post("/api/login", (req, res) => {
             req.session.firstname = data[0].PRENOM; 
             const userId = data[0].IDUSER;
             req.session.user_id = userId;
+            req.session.role = data[0].ROLE;
             console.log(req.session.firstname); 
             return res.json({ username: req.session.firstname });
           } else {
@@ -150,8 +152,14 @@ app.get("/api/events", (req, res) => {
 });
 
 
+
+
 app.post("/api/add-event", (req, res) => {
   const { userId, title, description, start, end, location } = req.body;
+
+  if (req.session.role !== 1) {
+    return res.status(403).json("Vous ne possédez pas des droits admins");
+  }
 
   // Vérifier si toutes les données nécessaires sont présentes
   if (!userId || !title || !start || !end || !location) {
@@ -170,6 +178,21 @@ app.post("/api/add-event", (req, res) => {
   });
 });
 
+app.delete("/api/events/delete/:id", (req, res) => {
+  const eventId = req.params.id;
+  if (req.session.role !== 1) {
+    return res.status(403).json("Vous ne possédez pas des droits admins");
+  }
+  const sql = "DELETE FROM EVENEMENT WHERE IDEVENT = ?";
+  db.query(sql, [eventId], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: "Erreur lors de la suppression de l'événement" });
+    }
+    res.json({ success: true });
+  });
+}
+);
+
 app.get("/api/songs", (req, res) => {
   const sql = "SELECT IDCHANT, TITRE FROM CHANT";
   db.query(sql, (err, result) => {
@@ -179,6 +202,8 @@ app.get("/api/songs", (req, res) => {
     res.json(result);
   });
 });
+
+
 
 app.get("/api/songs/:id", (req, res) => {
   const songId = req.params.id;
@@ -191,9 +216,26 @@ app.get("/api/songs/:id", (req, res) => {
   });
 });
 
+app.post("/api/songs", (req, res) => {
+  const { titre, paroles, compositeur, createur, userId } = req.body;
+  if (req.session.role !== 1) {
+    return res.status(403).json("Vous ne possédez pas des droits admins");
+  }
+  const sql = "INSERT INTO CHANT (TITRE, PAROLES, COMPOSITEUR, CREATEUR, IDUSER) VALUES (?, ?, ?, ?, ?)";
+  db.query(sql, [titre, paroles, compositeur, createur, userId], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: "Erreur lors de la création du chant" });
+    }
+    res.json({ success: true });
+  });
+});
+
 app.post("/api/songs/update/:id", (req, res) => {
-  const id = req.params.id; // Extraction correcte de l'id
-  const { PAROLES } = req.body; // Extraction correcte de PAROLES
+  const id = req.params.id; 
+  if (req.session.role !== 1) {
+    return res.status(403).json("Vous ne possédez pas des droits admins");
+  }
+  const { PAROLES } = req.body; 
 
   const sql = "UPDATE CHANT SET PAROLES = ? WHERE IDCHANT = ?";
   db.query(sql, [PAROLES, id], (err, result) => {
@@ -230,6 +272,9 @@ app.get("/api/article/:id", (req, res) => {
 
 app.post("/api/article", (req, res) => {
   const { userId, titre, contenu, auteur } = req.body;
+  if (req.session.role !== 1) {
+    return res.status(403).json("Vous ne possédez pas des droits admins");
+  }
   const sql = "INSERT INTO ARTICLE (IDUSER, TITRE, CONTENU, AUTEUR) VALUES (?, ?, ?, ?)";
   db.query(sql, [userId, titre, contenu, auteur], (err, result) => {
     if (err) {
@@ -241,6 +286,9 @@ app.post("/api/article", (req, res) => {
 
 app.post("/api/article/update/:id", (req, res) => {
   const id = req.params;
+  if (req.session.role !== 1) {
+    return res.status(403).json("Vous ne possédez pas des droits admins");
+  }
   const { TITRE, CONTENU } = req.body;
 
   const sql = "UPDATE ARTICLE SET TITRE = ?, CONTENU = ? WHERE IDARTICLE = ?";
@@ -255,6 +303,9 @@ app.post("/api/article/update/:id", (req, res) => {
 
 app.delete("/api/article/delete/:id", (req, res) => {
   const id  = req.params.id;
+  if (req.session.role !== 1) {
+    return res.status(403).json("Vous ne possédez pas des droits admins");
+  }
   const sql = "DELETE FROM ARTICLE WHERE IDARTICLE = ?";
   db.query(sql, [id], (err, result) => {
     if (err) {
@@ -289,6 +340,9 @@ app.get("/api/news/:id", (req, res) => {
 
 app.post("/api/news", (req, res) => {
   const { userId, titre, description, auteur } = req.body;
+  if (req.session.role !== 1) {
+    return res.status(403).json("Vous ne possédez pas des droits admins");
+  }
   const sql = "INSERT INTO ACTUALITE (IDUSER, TITRE, DESCRIPTION, AUTEUR) VALUES (?, ?, ?, ?)";
   db.query(sql, [userId, titre, description, auteur], (err, result) => {
     if (err) {
@@ -300,6 +354,9 @@ app.post("/api/news", (req, res) => {
 
 app.put("/api/news/:id", (req, res) => {
   const newsId = req.params.id;
+  if (req.session.role !== 1) {
+    return res.status(403).json("Vous ne possédez pas des droits admins");
+  }
   const { titre, description, auteur } = req.body;
   const sql = "UPDATE ACTUALITE SET TITRE = ?, DESCRIPTION = ?, AUTEUR = ? WHERE IDACTUALITE = ?";
   db.query(sql, [titre, description, auteur, newsId], (err, result) => {
@@ -312,6 +369,9 @@ app.put("/api/news/:id", (req, res) => {
 
 app.delete("/api/news/:id", (req, res) => {
   const newsId = req.params.id;
+  if (req.session.role !== 1) {
+    return res.status(403).json("Vous ne possédez pas des droits admins");
+  }
   const sql = "DELETE FROM ACTUALITE WHERE IDACTUALITE = ?";
   db.query(sql, [newsId], (err, result) => {
     if (err) {

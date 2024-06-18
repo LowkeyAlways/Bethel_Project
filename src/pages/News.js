@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Col, Row } from 'react-bootstrap';
-import ImageSide from '../images/image_side.jpg';
+import SideAd from '../images/side_ad.png';
 import NewsCard from '../components/NewsCards';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
@@ -43,7 +43,7 @@ function News() {
           </div>
         </Col>
         <Col xs lg="2">
-          <img className="image_side" src={ImageSide} alt="sideimage" />
+          <img className="image_side" src={SideAd} alt="sideimage" />
         </Col>
       </Row>
     </div>

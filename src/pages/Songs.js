@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col, Row, Button, Alert } from 'react-bootstrap';
-import ImageSide from '../images/image_side.jpg';
+import SideAd from '../images/side_ad.png';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { Link } from 'react-router-dom';
+
 
 function Songs() {
   const [songs, setSongs] = useState([]);
@@ -83,6 +85,7 @@ function Songs() {
             </Form.Select>
             <Button className='save_button' variant="primary" onClick={handleSaveChanges}>Enregistrer les modifications</Button>
             {message && <Alert className='save_message' variant={message.includes('Erreur') ? 'danger' : 'success'}>{message}</Alert>}
+            <Link to="/ajouterchant" className="add-songs btn btn-primary">Ajouter un chant</Link>
           </div>
           <div className='text-content'>
             {selectedSong && (
@@ -99,7 +102,7 @@ function Songs() {
           </div>
         </Col>
         <Col xs lg="2">
-          <img className="image_side" src={ImageSide} alt="sideimage"></img>
+          <img className="image_side" src={SideAd} alt="sideimage"></img>
         </Col>
       </Row>
     </div>
