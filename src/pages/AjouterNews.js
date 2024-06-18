@@ -13,7 +13,6 @@ function AjouterNews() {
     axios.get("http://localhost:3002/")
       .then(res => {
         if (res.data.valid) {
-          // Stocker l'ID utilisateur dans le sessionStorage
           sessionStorage.setItem('userId', res.data.id);
         } else {
             navigate('/login');
@@ -28,7 +27,6 @@ function AjouterNews() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Récupérer l'ID de l'utilisateur du sessionStorage
     const userId = sessionStorage.getItem('userId');
     
     if (!userId) {

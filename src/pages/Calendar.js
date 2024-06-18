@@ -16,7 +16,7 @@ function Calendar() {
             .then(res => {
                 console.log(res.data);
                 if (res.data.valid) {
-                    // Stocker l'ID utilisateur dans le sessionStorage
+                    
                     sessionStorage.setItem('userId', res.data.id);
                     navigate('/calendar');
                 } else {
@@ -32,16 +32,16 @@ function Calendar() {
     const handleActionComplete = (args) => {
         if (args.requestType === 'eventCreated') {
             console.log("Event data received:", args);
-            const eventData = args.data[0]; // On ajoute un événement à la fois, donc on prend le premier élément
+            const eventData = args.data[0];
             const { Subject, Description, StartTime, EndTime, Location } = eventData;
 
-            // Vérifier si toutes les données nécessaires sont présentes
+           
             if (!Subject || !StartTime || !EndTime || !Location) {
                 console.error("Incomplete event data:", eventData);
                 return;
             }
 
-            // Formater les dates
+           
             const formattedStartTime = format(new Date(StartTime), 'yyyy-MM-dd HH:mm:ss');
             const formattedEndTime = format(new Date(EndTime), 'yyyy-MM-dd HH:mm:ss');
 
@@ -53,12 +53,12 @@ function Calendar() {
                 location: Location,
             });
 
-            // Récupérer l'ID utilisateur du sessionStorage
+            
             const userId = sessionStorage.getItem('userId');
 
-            // Envoyer les données à votre API backend pour enregistrer l'événement
+            
             axios.post("http://localhost:3002/api/add-event", {
-                userId: userId, // Utiliser l'ID utilisateur du sessionStorage
+                userId: userId,
                 title: Subject,
                 description: Description,
                 start: formattedStartTime,
@@ -67,7 +67,7 @@ function Calendar() {
             })
             .then(res => {
                 console.log("Event added successfully to the database:", res.data);
-                fetchEvents(); // Actualiser les événements après l'ajout
+                fetchEvents(); 
             })
             .catch(err => {
                 console.error("Error adding event to the database:", err);

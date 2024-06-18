@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom'; // Importez Link depuis react-router-dom
+import { Link } from 'react-router-dom'; 
 import axios from 'axios';
 
 function truncateText(text, maxLength) {
@@ -14,7 +14,7 @@ function truncateText(text, maxLength) {
 function NewsCard({ news, onDelete, userRole }) {
   const handleDelete = () => {
     if (userRole !== 1) {
-      // Si l'utilisateur n'a pas le rôle approprié (ROLE=1), afficher une alerte
+      
       alert("Vous n'avez pas les autorisations nécessaires pour supprimer une actualité.");
       return;
     }
