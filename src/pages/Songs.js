@@ -41,7 +41,7 @@ function Songs() {
         setSelectedSong(response.data);
         setLyrics(response.data.PAROLES);
         setEditedLyrics(response.data.PAROLES);
-        setMessage(''); // Clear any previous message when selecting a new song
+        setMessage(''); 
       })
       .catch(error => {
         console.error("There was an error fetching the song lyrics!", error);
@@ -60,11 +60,11 @@ function Songs() {
         .then(response => {
           console.log("Lyrics updated successfully!");
           setLyrics(editedLyrics);
-          setMessage('Modifications enregistrées.'); // Set success message
+          setMessage('Modifications enregistrées.'); 
         })
         .catch(error => {
           console.error("There was an error updating the lyrics!", error);
-          setMessage('Erreur lors de l\'enregistrement des modifications.'); // Set error message
+          setMessage('Erreur lors de l\'enregistrement des modifications.'); 
         });
     }
   };

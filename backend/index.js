@@ -155,7 +155,7 @@ app.post("/api/add-event", (req, res) => {
     return res.status(403).json("Vous ne possédez pas des droits admins");
   }
 
-  // Vérifier si toutes les données nécessaires sont présentes
+  
   if (!userId || !title || !start || !end || !location) {
       return res.status(400).json({ error: "Données d'événement incomplètes" });
   }

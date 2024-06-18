@@ -40,7 +40,7 @@ function Subscription() {
         e.preventDefault();
         const formErrors = validation(values.email, values.password, values.firstname, values.lastname);
 
-        // Check if there are any validation errors
+        
         if (Object.values(formErrors).some(error => error !== '')) {
             setErrors(formErrors);
             console.log('Il y a des erreurs de validation');

@@ -46,7 +46,7 @@ function Login() {
         })
         .catch(error => {
             if (error.response && error.response.status === 401) {
-                // 401 Unauthorized: email ou mdp incorrecte
+                
                 setErrors({ global: "Adresse e-mail ou mot de passe incorrect." });
             } else {
                 console.log(error);

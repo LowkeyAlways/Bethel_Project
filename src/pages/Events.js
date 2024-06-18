@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Col, Row } from 'react-bootstrap'; // CardColumns pour afficher les cartes d'événements en colonnes
+import { Col, Row } from 'react-bootstrap'; 
 import SideAd from '../images/side_ad.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
@@ -19,7 +19,7 @@ function Events() {
         .then(res => {
             console.log(res.data);
             if (res.data.valid) {
-                // Stocker l'ID utilisateur dans le sessionStorage
+                
                 sessionStorage.setItem('userId', res.data.id);
                 navigate('/events');
                 fetchEvents();
