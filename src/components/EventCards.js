@@ -3,10 +3,9 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Importez Link depuis react-router-dom
+import { Link } from 'react-router-dom'; 
 
 
-// Truncate text utility function
 function truncateText(text, maxLength) {
   if (text.length > maxLength) {
     return text.substring(0, maxLength) + '...';
@@ -17,14 +16,14 @@ function truncateText(text, maxLength) {
 function EventCards({ event, onDelete, userRole }) {
   const handleDelete = () => {
     if (userRole !== 1) {
-        // Si l'utilisateur n'a pas le rôle approprié (ROLE=1), afficher une alerte
+        
         alert("Vous n'avez pas les autorisations nécessaires pour supprimer un article.");
         return;
       }
     axios.delete(`http://localhost:3002/api/events/delete/${event.IDEVENT}`)
       .then(response => {
         if (response.data.success) {
-          onDelete(event.IDEVENT); // Appeler la fonction onDelete pour supprimer l'événement du state parent
+          onDelete(event.IDEVENT); 
           alert('Événement supprimé.');
         } else {
           alert('Erreur lors de la suppression de l\'événement');
@@ -53,7 +52,7 @@ function EventCards({ event, onDelete, userRole }) {
   );
 }
 
-// Fonction utilitaire pour calculer la durée d'un événement
+
 function calculateEventDuration(startDate, endDate) {
   const start = new Date(startDate);
   const end = new Date(endDate);

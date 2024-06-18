@@ -8,12 +8,6 @@ const mysql = require("mysql");
 const cors = require("cors");
 
 const bcrypt = require("bcrypt");
-/* `const saltRounds = 10;` is setting the number of salt rounds to be used in the bcrypt hashing
-algorithm. In bcrypt, salting is a technique used to strengthen the security of hashed passwords by
-adding random data (salt) to the input before hashing. The number 10 in this case represents the
-cost factor or the number of iterations used in the salting process, which determines the
-computational complexity of generating the hash. A higher number of salt rounds increases the time
-it takes to hash a password, making it more secure against brute-force attacks. */
 const saltRounds = 10;
 
 const app = express();
@@ -68,10 +62,10 @@ if (req.session.firstname) {
 app.post("/api/login", (req, res) => {
     // eslint-disable-next-line no-unused-vars
     const { email, password } = req.body;
-    const sql = `SELECT * FROM UTILISATEUR WHERE EMAIL = ?`;
+    const sql = "SELECT * FROM UTILISATEUR WHERE EMAIL = ?";
     db.query(sql, [req.body.email, req.body.password], (err, data) => {
       if (err) {
-        return res.json("Error");
+        return res.json("Erreur");
       }
       if (data.length > 0) {
         bcrypt.compare(password, data[0].MDP, (error, response) => {
@@ -83,18 +77,18 @@ app.post("/api/login", (req, res) => {
             console.log(req.session.firstname); 
             return res.json({ username: req.session.firstname });
           } else {
-            return res.json("Invalid Email or Password");
+            return res.json("Email ou mot de passe invalide");
           }
         });
       } else {
-        return res.json("User doesn't exist");
+        return res.json("L'utilisateur n'existe pas");
       }
     });
 });
 
 app.post("/api/check-email", (req, res) => {
     const { email } = req.body;
-    const sql = `SELECT COUNT(*) AS count FROM UTILISATEUR WHERE EMAIL = ?`;
+    const sql = "SELECT COUNT(*) AS count FROM UTILISATEUR WHERE EMAIL = ?";
     db.query(sql, [email], (err, result) => {
       if (err) {
         return res

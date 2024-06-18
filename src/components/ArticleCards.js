@@ -4,9 +4,9 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DOMPurify from 'dompurify';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import de Link depuis react-router-dom
+import { Link } from 'react-router-dom'; 
 
-// Truncate text utility function
+
 function truncateText(text, maxLength) {
   if (text.length > maxLength) {
     return text.substring(0, maxLength) + '...';
@@ -17,14 +17,14 @@ function truncateText(text, maxLength) {
 function ArticleCards({ article, onDelete, userRole }) {
   const handleDelete = () => {
     if (userRole !== 1) {
-      // Si l'utilisateur n'a pas le rôle approprié (ROLE=1), afficher une alerte
+      
       alert("Vous n'avez pas les autorisations nécessaires pour supprimer un article.");
       return;
     }
     axios.delete(`http://localhost:3002/api/article/delete/${article.IDARTICLE}`)
       .then(response => {
         if (response.data.success) {
-          onDelete(article.IDARTICLE); // Appeler la fonction onDelete pour supprimer l'article du state parent
+          onDelete(article.IDARTICLE); 
           alert('Actualité supprimée.');
         } else {
           alert('Erreur lors de la suppression de l\'article');
